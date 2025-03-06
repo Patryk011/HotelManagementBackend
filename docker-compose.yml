@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: qwerty123
     ports:
-      - '5432:5432'
+      - '5433:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -16,7 +16,7 @@ services:
     image: quay.io/keycloak/keycloak:latest
     environment:
       KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://postgres:5432/hotel_db
+      KC_DB_URL: jdbc:postgresql://postgres:5432/hotel_db?currentSchema=keycloak
       KC_DB_USERNAME: postgres
       KC_DB_PASSWORD: ${DATABASE_PASSWORD}
       KEYCLOAK_ADMIN: admin
