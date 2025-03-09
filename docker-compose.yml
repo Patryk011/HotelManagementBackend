@@ -12,7 +12,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  keycloak:
+  keycloak-local.pl:
     image: quay.io/keycloak/keycloak:latest
     environment:
       KC_DB: postgres
