@@ -1,13 +1,13 @@
 <html>
 <head>
-    <title>Car Rental Login</title>
+    <title>Hotel login</title>
     <link rel="stylesheet" href="${url.resourcesPath}/css/login.css" />
 </head>
 <body>
 <div class="main-container">
 <div class="login-container">
     <div class="logo">
-        <img src="${url.resourcesPath}/img/logo.png" alt="Car Rental Logo" />
+        <img src="${url.resourcesPath}/img/hotel_logo.png" alt="Hotel management Logo" />
     </div>
     <div class="login-form">
 
@@ -16,18 +16,18 @@
             <input type="text" id="username" name="username" placeholder="Wprowadź email" required />
             <label for="password">Hasło</label>
             <input type="password" id="password" name="password" placeholder="Wprowadź hasło" required />
-            <div class="actions">
+            <#--  <div class="actions">
                 <label for="rememberMe" class="rememberMe">
                     <input type="checkbox" id="rememberMe" name="rememberMe" />
                     Zapamiętaj mnie
-                </label>
+                </label>  -->
 
 <#--            <a href="${url.loginResetCredentialsUrl}>Zapomniałeś hasła?</a>      this.isAdmin = keycloak.hasRealmRole("admin");-->
-            </div>
+            <#--  </div>  -->
             <button type="submit" class="login-btn">Zaloguj się</button>
         </form>
     </div>
-    <#if client.clientId == "car-rental-client">
+    <#if client.clientId == "hotel-client">
     <div class="login-footer">
 
         <a href="${url.registrationUrl}">Nie masz konta? Zarejestruj się</a>
