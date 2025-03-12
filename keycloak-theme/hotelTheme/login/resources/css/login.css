@@ -3,7 +3,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f2f2f2;
+  background-color: #888787;
   font-family: Arial, sans-serif;
   margin: 0;
 }
@@ -32,6 +32,7 @@ img,
 label {
   display: block;
   margin: 10px 0 5px;
+  color: #dbdad8;
 }
 
 input:-webkit-autofill {
