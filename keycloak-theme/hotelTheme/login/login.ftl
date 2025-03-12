@@ -27,12 +27,12 @@
             <button type="submit" class="login-btn">Zaloguj się</button>
         </form>
     </div>
-    <#if client.clientId == "hotel-client">
+    <#--  <#if client.clientId == "hotel-client">
     <div class="login-footer">
 
         <a href="${url.registrationUrl}">Nie masz konta? Zarejestruj się</a>
     </div>
-    </#if>
+    </#if>  -->
 
     <div class="social-login">
         <#if social.providers?? && social.providers?size gt 0>
