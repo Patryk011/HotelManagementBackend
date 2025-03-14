@@ -18,7 +18,7 @@ import { User } from './entities/user.entity';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
 
-      entities: [Hotel, Room],
+      entities: [Hotel, Room, User, Reservation],
 
       synchronize: true,
     }),
