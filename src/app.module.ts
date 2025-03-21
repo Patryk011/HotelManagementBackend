@@ -3,10 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Hotel } from './entities/hotel.entity';
-import { Room } from './entities/room.entity';
-import { Reservation } from './entities/reservation.entity';
-import { User } from './entities/user.entity';
+
+import { HotelModule } from './hotel/hotel.module';
+import { PaymentModule } from './payment/payment.module';
+import { RoomModule } from './room/room.module';
+import { ReservationModule } from './reservation/reservation.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -18,12 +20,15 @@ import { User } from './entities/user.entity';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
 
-      entities: [Hotel, Room, User, Reservation],
-
+      autoLoadEntities: true,
       synchronize: true,
     }),
     AuthModule,
-    TypeOrmModule.forFeature([Hotel, Room, Reservation, User]),
+    HotelModule,
+    PaymentModule,
+    RoomModule,
+    ReservationModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

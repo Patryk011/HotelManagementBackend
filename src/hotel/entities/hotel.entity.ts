@@ -1,4 +1,4 @@
-import { Room } from 'src/entities/room.entity';
+import { Room } from 'src/room/entities/room.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()

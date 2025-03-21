@@ -2,8 +2,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ unique: true })
   email: string;
@@ -16,7 +16,4 @@ export class User {
 
   @Column({ nullable: true })
   phoneNumber?: string;
-
-  @Column({ nullable: true })
-  keycloakId?: string;
 }

@@ -1,4 +1,4 @@
-import { Hotel } from './hotel.entity';
+import { Hotel } from '../../hotel/entities/hotel.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
