@@ -1,12 +1,26 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { Roles, RolesGuard } from './auth/guards/role.guard';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  @Get('public')
+  getPublic() {
+    return { message: 'Public route' };
+  }
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @UseGuards(JwtAuthGuard)
+  @Get('protected')
+  getProtected() {
+    return { message: 'Token is valid, no specific role' };
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
+  @Get('admin')
+  getAdminOnlyData() {
+    return {
+      message: 'Admin only route. User must have realm_access.roles=["admin"].',
+    };
   }
 }
