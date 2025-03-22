@@ -29,7 +29,7 @@ services:
       - postgres
     command: ['start-dev']
 
-  node_app:
+  nest-app:
     build:
       context: .
       dockerfile: Dockerfile.dev

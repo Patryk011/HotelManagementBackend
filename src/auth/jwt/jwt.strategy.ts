@@ -1,35 +1,36 @@
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { Strategy, ExtractJwt } from 'passport-jwt';
-import * as jwksRsa from 'jwks-rsa';
-import { KeycloakToken } from './jwt.types';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import { passportJwtSecret } from 'jwks-rsa';
 
 @Injectable()
-export class JwtKeycloakStrategy extends PassportStrategy(Strategy, 'jwt') {
+export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     super({
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKeyProvider: jwksRsa.expressJwtSecret({
+      ignoreExpiration: false,
+      secretOrKeyProvider: passportJwtSecret({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        jwksUri:
-          'http://localhost:8080/realms/hotel/protocol/openid-connect/certs',
+        jwksUri: `http://keycloak-local.pl:8080/realms/hotel-realm/protocol/openid-connect/certs`,
       }),
 
-      issuer: `http://localhost:8080/realms/hotel`,
+      issuer: `http://keycloak-local.pl:8080/realms/hotel-realm`,
       algorithms: ['RS256'],
     });
   }
 
-  validate(payload: KeycloakToken) {
+  async validate(payload: any) {
     return {
       userId: payload.sub,
       username: payload.preferred_username,
-      email: payload.email,
       roles: payload.realm_access?.roles || [],
+      email: payload.email,
     };
   }
 }
