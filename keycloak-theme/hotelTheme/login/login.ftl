@@ -53,6 +53,15 @@
             </#list>
         </#if>
     </div>
+
+    <div class="debug-info">
+    <#if client?? && client.clientId?? && client.clientId == "hotel-worker">
+        <p>Current client: ${client.clientId}</p>
+    <#else>
+        <p>Client information not available</p>
+    </#if>
+    </div>
+
 </div>
 </div>
 </body>

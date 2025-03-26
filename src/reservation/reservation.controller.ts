@@ -17,6 +17,11 @@ export class ReservationController {
     return this.reservationService.findOne(+id);
   }
 
+  @Get()
+  findAll() {
+    return this.reservationService.findAll();
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,
